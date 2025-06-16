@@ -1,0 +1,11 @@
+firstName: Parker
+lastName: Peter
+age : 22
+email: spidey@marvel.com
+foes:
+  - name: Kingpin
+    age : 25
+  - name: Green Goblin
+    age : 32
+  - name: Electro
+    age : 45
