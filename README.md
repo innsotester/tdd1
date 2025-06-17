@@ -4,22 +4,26 @@
 The following yaml file contains description of a workflow
 ```yaml
 - states:
+  - action : WORK
   - initialState: START
     finalState: INPROGRESS
     rights:
       - TICKET_START
       - TICKET_FULL
+  - action : COMPLETE      
   - initialState: INPROGRESS
     finalState: COMPLETED
     rights:
       - TICKET_COMPLETE
       - TICKET_FORCE_COMPLETE
-      - TICKET_FULL    
+      - TICKET_FULL  
+  - action : ONHOLD        
   - initialState: INPROGRESS
     finalState: PENDING
     rights:
       - TICKET_PENDING
-      - TICKET_FULL    
+      - TICKET_FULL
+  - action : CANCEL          
   - initialState: INPROGRESS
     finalState: CANCEL
     rights:
@@ -29,56 +33,50 @@ The following yaml file contains description of a workflow
 
 ## Features
 
-- as an Agent (having correct roles) I submit a ticket (of a given state) to final state for this workflow, no error , ticlet status is changed to final state
+- as an Agent (having correct roles) I submit an action for a ticket (of a given correct state), ticket status is changed to final state
 - if role not correct for the workflow : error is returned (not allowed)
-- if a flow not possible (no matching initialState / finalState) : error is returned (unknow flow)
-- a ticket can use many flows described for one submit, I want ticket state A to final state C (workflow found A -> B and B -> C)
+- if a flow not possible (no matching initialState) : error is returned (cannot execute action)
 
 # step2
 
-yaml file contains also actions (methods called with values) to process when workflow is submitted
+yaml file contains also options (check is done if agent has correct options to execute the flows)
 
 ```yaml
 - states:
-  - initialState: START
+  - action : WORK
+    initialState: START
     finalState: INPROGRESS
     rights:
       - TICKET_START
       - TICKET_FULL
-    actions:
-      - start
-        - ticketId
-  - initialState: INPROGRESS
+    options:
+      - hasSkill : true
+      - hasCaseGroup : false                       
+  - action : COMPLETE      
+    initialState: INPROGRESS
     finalState: COMPLETED
     rights:
       - TICKET_COMPLETE
       - TICKET_FORCE_COMPLETE
-      - TICKET_FULL
-    actions:
-      - complete
-        - ticketId
-        - date
-  - initialState: INPROGRESS
+      - TICKET_FULL  
+  - action : ONHOLD        
+    initialState: INPROGRESS
     finalState: PENDING
     rights:
       - TICKET_PENDING
       - TICKET_FULL
-    actions:
-      - pending
-        - ticketId
-        - agentId
-        - date
-  - initialState: INPROGRESS
+    options:
+      - isAssignee : true           
+  - action : CANCEL          
+    initialState: INPROGRESS
     finalState: CANCEL
     rights:
       - TICKET_CANCEL
       - TICKET_FULL
-    actions:
-      - warn
-      - cancel
-        - ticketId
+    options:
+      - isCreator : true            
 ```
 
 ## Features
 
-- actions are executed in the order of the array with given parameter, if an action or value not found, error is returned
+- options are tested and must be valid for the agent executing the action. If option is invalid (or not correct values) error is returned : "agent has not valid option"
