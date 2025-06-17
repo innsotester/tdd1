@@ -5,26 +5,26 @@ The following yaml file contains description of a workflow
 ```yaml
 - states:
   - action : WORK
-  - initialState: START
+    initialState: START
     finalState: INPROGRESS
     rights:
       - TICKET_START
       - TICKET_FULL
   - action : COMPLETE      
-  - initialState: INPROGRESS
+    initialState: INPROGRESS
     finalState: COMPLETED
     rights:
       - TICKET_COMPLETE
       - TICKET_FORCE_COMPLETE
       - TICKET_FULL  
   - action : ONHOLD        
-  - initialState: INPROGRESS
+    initialState: INPROGRESS
     finalState: PENDING
     rights:
       - TICKET_PENDING
       - TICKET_FULL
   - action : CANCEL          
-  - initialState: INPROGRESS
+    initialState: INPROGRESS
     finalState: CANCEL
     rights:
       - TICKET_CANCEL

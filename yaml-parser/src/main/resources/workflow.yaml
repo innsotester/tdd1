@@ -1,39 +1,26 @@
 - states:
-  - initialState: START
-    finalState: INPROGRESS
-    rights:
-      - TICKET_START
-      - TICKET_FULL
-    actions:
-      - start
-        - ticketId
-  - initialState: INPROGRESS
-    finalState: COMPLETED
-    rights:
-      - TICKET_COMPLETE
-      - TICKET_FORCE_COMPLETE
-      - TICKET_FULL
-    actions:
-      - complete
-        - ticketId
-        - date
-  - initialState: INPROGRESS
-    finalState: PENDING
-    rights:
-      - TICKET_PENDING
-      - TICKET_FULL
-    actions:
-      - pending
-        - ticketId
-        - agentId
-        - date
-  - initialState: INPROGRESS
-    finalState: CANCEL
-    rights:
-      - TICKET_CANCEL
-      - TICKET_FULL
-    actions:
-      - warn
-      - cancel
-        - ticketId
-
+    - action : WORK
+      initialState: START
+      finalState: INPROGRESS
+      rights:
+        - TICKET_START
+        - TICKET_FULL
+    - action : COMPLETE
+      initialState: INPROGRESS
+      finalState: COMPLETED
+      rights:
+        - TICKET_COMPLETE
+        - TICKET_FORCE_COMPLETE
+        - TICKET_FULL
+    - action : ONHOLD
+      initialState: INPROGRESS
+      finalState: PENDING
+      rights:
+        - TICKET_PENDING
+        - TICKET_FULL
+    - action : CANCEL
+      initialState: INPROGRESS
+      finalState: CANCEL
+      rights:
+        - TICKET_CANCEL
+        - TICKET_FULL
