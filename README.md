@@ -3,7 +3,7 @@
 # step1
 The following yaml file contains description of a workflow
 ```yaml
-- states:
+- workflowAction:
   - action : WORK
     initialState: START
     finalState: INPROGRESS
@@ -42,7 +42,7 @@ The following yaml file contains description of a workflow
 yaml file contains also options (check is done if agent has correct options to execute the flows)
 
 ```yaml
-- states:
+- workflowAction:
   - action : WORK
     initialState: START
     finalState: INPROGRESS
