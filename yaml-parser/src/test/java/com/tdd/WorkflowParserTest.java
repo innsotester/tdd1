@@ -1,6 +1,7 @@
 package com.tdd;
 
 
+import com.tdd.model.ActionEnum;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +18,7 @@ class WorkflowParserTest {
 
 		var action1 = workflow.getWorkflowAction().get(0);
 
-		assertThat(action1.getAction()).isEqualTo("WORK");
+		assertThat(action1.getAction()).isEqualTo(ActionEnum.WORK);
 		assertThat(action1.getInitialState()).isEqualTo("START");
 		assertThat(action1.getFinalState()).isEqualTo("INPROGRESS");
 		assertThat(action1.getRights()).hasSize(2);
