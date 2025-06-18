@@ -8,7 +8,7 @@ import java.util.List;
 @Setter
 public class WorkflowAction {
 	private ActionEnum action;
-	private String initialState;
-	private String finalState;
+	private TicketEnum initialState;
+	private TicketEnum finalState;
 	private List<String> rights;
 }

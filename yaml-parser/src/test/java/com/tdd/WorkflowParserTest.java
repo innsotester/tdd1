@@ -2,10 +2,9 @@ package com.tdd;
 
 
 import com.tdd.model.ActionEnum;
-import org.assertj.core.api.Assertions;
+import com.tdd.model.Ticket;
+import com.tdd.model.TicketEnum;
 import org.junit.jupiter.api.Test;
-
-import com.tdd.model.WorkflowParser;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 
@@ -19,8 +18,8 @@ class WorkflowParserTest {
 		var action1 = workflow.getWorkflowAction().get(0);
 
 		assertThat(action1.getAction()).isEqualTo(ActionEnum.WORK);
-		assertThat(action1.getInitialState()).isEqualTo("START");
-		assertThat(action1.getFinalState()).isEqualTo("INPROGRESS");
+		assertThat(action1.getInitialState()).isEqualTo(TicketEnum.START);
+		assertThat(action1.getFinalState()).isEqualTo(TicketEnum.INPROGRESS);
 		assertThat(action1.getRights()).hasSize(2);
 		assertThat(action1.getRights()).first().isEqualTo("TICKET_START");
 		assertThat(action1.getRights()).last().isEqualTo("TICKET_FULL");

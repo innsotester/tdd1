@@ -1,12 +1,9 @@
-package com.tdd.model;
+package com.tdd;
 
 import java.io.InputStream;
-import java.util.List;
 
+import com.tdd.model.Workflow;
 import org.yaml.snakeyaml.Yaml;
-
-import com.tdd.YamlParser;
-import org.yaml.snakeyaml.constructor.Constructor;
 
 public class WorkflowParser {
 	public Workflow fromYaml(String path) {
