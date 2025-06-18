@@ -33,8 +33,8 @@ The following yaml file contains description of a workflow
 
 ## Features
 
-- as an Agent (having correct roles) I submit an action for a ticket (of a given correct state), ticket status is changed to final state
-- if role not correct for the workflow : error is returned (not allowed)
+- as an Agent (having correct right) I submit an action for a ticket (of a given correct state), ticket status is changed to final state
+- if right is not correct for the workflow : error is returned (not allowed)
 - if a flow not possible (no matching initialState) : error is returned (cannot execute action)
 
 # step2
